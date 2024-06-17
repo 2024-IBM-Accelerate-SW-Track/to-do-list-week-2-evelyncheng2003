@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Button, TextField } from "@mui/material";
 
 class AddTodo extends Component {
-  // Create a local react state of the this component with a content property set to nothing.
+  // A local react state of the this component with a content property set to nothing.
   constructor() {
     super();
     this.state = {
       content: "",
+      date: "",
     };
   }
   // The handleChange function updates the react state with the new input value provided from the user.
@@ -15,6 +16,7 @@ class AddTodo extends Component {
   handleChange = (event) => {
     this.setState({
       content: event.target.value,
+      date: Date().toLocaleString('en-US')
     });
   };
   // The handleSubmit function collects the forms input and puts it into the react state.
@@ -27,18 +29,17 @@ class AddTodo extends Component {
       this.props.addTodo(this.state);
       this.setState({
         content: "",
+        date: "",
       });
     }
   };
   render() {
     return (
-      // 1. When rendering a component, you can render as many elements as you like as long as it is wrapped inside
-      // one div element.
-      // 2. The return statement should include a text field input with the handleChange function from above that
+      // 1. The return statement should include a text field input with the handleChange function from above that
       // is passed into an onChange event.
-      // 3. The return should also include a button with the handleSubmit function from above that is passed into
+      // 2. The return should also include a button with the handleSubmit function from above that is passed into
       // an OnClick event.
-      // 4. The value of the text field also should reflect the local state of this component.
+      // 3. The value of the text field also should reflect the local state of this component.
       <div>
         <TextField
           label="Add New Item"
@@ -56,6 +57,7 @@ class AddTodo extends Component {
         >
           Add
         </Button>
+
       </div>
     );
   }
